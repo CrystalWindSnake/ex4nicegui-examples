@@ -1,0 +1,56 @@
+.nicegui-content {
+    background-color: #FFDEE9;
+    background-image: linear-gradient(0deg, #FFDEE9 0%, #B5FFFC 100%);
+}
+
+.watermark-text {
+    font-family: fantasy;
+    position: absolute;
+    top: var(--top-offset, 50%);
+    left: var(--left-offset, 50%);
+    transform: translate(-50%, -50%) rotate(-45deg);
+    font-size: 6em;
+    color: rgba(0, 0, 0, 0.1);
+    user-select: none;
+    pointer-events: none;
+}
+
+.q-scrollarea__content {
+    padding: 0 !important
+}
+
+
+/* card */
+.target-card {
+    grid-template-columns: 1fr 0fr;
+    gap: 1rem;
+    transition: grid-template-columns 0.3s ease-in-out;
+}
+
+
+.target-card.open {
+    grid-template-columns: 1fr 1fr;
+}
+
+
+.target-card>*:nth-child(2) {
+    overflow-x: hidden !important;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.target-card.open>*:nth-child(2) {
+    opacity: 1;
+    padding: 1px;
+}
+
+
+/* todo item hover */
+
+.x-edit-btn {
+    visibility: hidden;
+}
+
+.x-todo-item:hover .x-edit-btn {
+    visibility: visible;
+}

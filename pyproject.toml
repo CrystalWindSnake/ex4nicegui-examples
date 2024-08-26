@@ -1,0 +1,16 @@
+[tool.poetry]
+package-mode = false
+name = "ex4nicegui-examples"
+version = "0.1.0"
+description = ""
+authors = ["CrystalWindSnake <568166495@qq.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+ex4nicegui = {path = "../ex4nicegui", develop = true}
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

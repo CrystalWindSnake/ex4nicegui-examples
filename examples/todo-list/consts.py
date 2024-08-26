@@ -1,0 +1,1 @@
+PRIORITYS = ["high", "medium", "low"]
