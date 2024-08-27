@@ -8,7 +8,7 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.8"
-ex4nicegui = {path = "../ex4nicegui", develop = true}
+ex4nicegui = "^0.7.0"
 
 
 [build-system]

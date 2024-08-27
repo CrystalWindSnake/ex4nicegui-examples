@@ -46,11 +46,6 @@ class ProvideDescriptor(Generic[T]):
 
 provide = ProvideDescriptor
 
-# def provide(
-#     builder: Callable[..., T], scope: T_Provider_Scope = "client"
-# ) -> ProvideDescriptor[T]:
-#     return ProvideDescriptor(builder, scope)
-
 
 def provide_descriptor(
     builder: Callable[..., T], scope: T_Provider_Scope = "client"

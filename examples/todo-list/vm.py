@@ -38,7 +38,12 @@ class TodoApp(rxui.ViewModel):
         super().__init__()
         self.todos = ref(todos or [])
         self.filter_type: Ref[Literal["all", "active", "completed"]] = ref("all")
+
         self.title_input = ref("")
+        self.is_title_input_valid = (
+            lambda: self.title_input.value is not None
+            and len(self.title_input.value.strip()) > 0
+        )
         self.statistics_card_opened = ref(True)
         self.item_grid_col = "6ch auto 15ch 5ch"
 
@@ -55,15 +60,16 @@ class TodoApp(rxui.ViewModel):
 
     @rxui.cached_var
     def filtered_todos(self):
-        return getattr(filters, self.filter_type.value)(self.todos.value)
+        sorted_todos = sorted(self.todos.value, key=lambda x: x.completed.value)
+        return getattr(filters_service, self.filter_type.value)(sorted_todos)
 
     @rxui.cached_var
     def active_count(self):
-        return len(filters.active(self.todos.value))
+        return len(filters_service.active(self.todos.value))
 
     @rxui.cached_var
     def completed_count(self):
-        return len(filters.completed(self.todos.value))
+        return len(filters_service.completed(self.todos.value))
 
     @rxui.cached_var
     def completion_ratio(self):
@@ -73,7 +79,7 @@ class TodoApp(rxui.ViewModel):
 
     @rxui.cached_var
     def total_count(self):
-        return len(filters.all(self.todos.value))
+        return len(filters_service.all(self.todos.value))
 
     @rxui.cached_var
     def is_all_checked(self):
@@ -124,7 +130,7 @@ class TodoApp(rxui.ViewModel):
         return {
             "legend": {"selectedMode": False},
             "grid": {"height": 30},
-            "xAxis": {"type": "value", "show": False},
+            "xAxis": {"type": "value", "show": False, "min": 0, "max": "dataMax"},
             "yAxis": {"type": "category", "data": ["Mon"], "show": False},
             "series": [
                 {
@@ -145,7 +151,6 @@ class TodoApp(rxui.ViewModel):
         }
 
     def add_item(self, title: str):
-        # self.todos.value.append(TodoItem(title))
         self.todos.value.insert(0, TodoItem(title))
 
     def remove_item(self, item: TodoItem):
@@ -160,8 +165,9 @@ class TodoApp(rxui.ViewModel):
             item.toggle_completed()
 
     def add_task(self):
-        if self.title_input.value:
-            self.add_item(self.title_input.value)
+        title = self.title_input.value.strip()
+        if title:
+            self.add_item(title)
             self.title_input.value = ""
 
     def clear_completed(self):
@@ -173,7 +179,7 @@ class TodoApp(rxui.ViewModel):
         self.todos.value.remove(item)
 
 
-class filters:
+class filters_service:
     @staticmethod
     def active(todos: List[TodoItem]):
         return [todo for todo in todos if not todo.completed.value]

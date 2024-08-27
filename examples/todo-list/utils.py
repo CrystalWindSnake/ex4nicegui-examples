@@ -1,6 +1,7 @@
 from typing import Optional
 from nicegui import ui
 from colorsys import hls_to_rgb
+import fastapi
 
 
 def locked_page_height():
@@ -13,6 +14,15 @@ def locked_page_height():
         ''':style-fn="(offset, height) => ( { height: offset ? `calc(100vh - ${offset}px)` : '100vh' })"'''
     )
     client.content.classes("h-full")
+
+
+def is_zh_client_language(request: fastapi.Request):
+    accept_language = request.headers.get("accept-language")
+    if not accept_language:
+        return False
+    languages = accept_language.split(",")
+
+    return any("zh" in lang for lang in languages)
 
 
 def hsl2rgba(

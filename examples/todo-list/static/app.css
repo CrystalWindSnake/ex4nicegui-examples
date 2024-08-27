@@ -19,6 +19,30 @@
     padding: 0 !important
 }
 
+.q-chip__content {
+    justify-content: center;
+}
+
+
+/*  */
+.animate-bounce-x {
+    animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateX(-25%) translateY(-50%);
+        animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+    }
+
+    50% {
+        transform: translateX(0) translateY(-50%);
+        animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    }
+}
+
 
 /* card */
 .target-card {

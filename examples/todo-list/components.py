@@ -50,6 +50,17 @@ def todo_item(todo_app: vm.TodoApp, todo: vm.TodoItem):
             )
 
 
+class AppView:
+    def __init__(self):
+        todo_app = provider.app.get()
+
+        with rxui.grid().classes(
+            "h-full w-full min-w-[852px] max-w-[1200px] self-center target-card"
+        ).bind_classes({"open": todo_app.statistics_card_opened}):
+            MainView()
+            StatisticsView()
+
+
 class MainView:
     def __init__(self):
         todo_app = provider.app.get()
@@ -100,35 +111,36 @@ class StatisticsView:
         ):
             rxui.label(Translates.statistics_card_title).classes("text-3xl font-bold")
 
-            PriorityStatisticsChart()
+            with ui.grid(rows="auto 1fr auto").classes("grow w-full"):
+                with ui.row(wrap=False).classes("font-[Roboto] w-full justify-around"):
+                    StatisticsText(
+                        todo_app.completed_count,
+                        Translates.statistics_card_completed_text,
+                        "check_circle",
+                        "#65a30d",
+                    ).box.on(
+                        "click", lambda: todo_app.filter_type.set_value("completed")
+                    ).tooltip(Translates.statistics_card_text_tooltip)
 
-            with ui.row(wrap=False).classes("font-[Roboto] w-full justify-around"):
-                StatisticsText(
-                    todo_app.completed_count,
-                    Translates.statistics_card_completed_text,
-                    "check_circle",
-                    "#65a30d",
-                ).box.on(
-                    "click", lambda: todo_app.filter_type.set_value("completed")
-                ).tooltip(Translates.statistics_card_text_tooltip)
+                    StatisticsText(
+                        todo_app.active_count,
+                        Translates.statistics_card_active_text,
+                        "hourglass_empty",
+                    ).box.on(
+                        "click", lambda: todo_app.filter_type.set_value("active")
+                    ).tooltip(Translates.statistics_card_text_tooltip)
 
-                StatisticsText(
-                    todo_app.active_count,
-                    Translates.statistics_card_active_text,
-                    "hourglass_empty",
-                ).box.on(
-                    "click", lambda: todo_app.filter_type.set_value("active")
-                ).tooltip(Translates.statistics_card_text_tooltip)
+                    StatisticsText(
+                        todo_app.total_count,
+                        Translates.statistics_card_total_text,
+                        "view_list",
+                    ).box.on(
+                        "click", lambda: todo_app.filter_type.set_value("all")
+                    ).tooltip(Translates.statistics_card_text_tooltip)
 
-                StatisticsText(
-                    todo_app.total_count,
-                    Translates.statistics_card_total_text,
-                    "view_list",
-                ).box.on(
-                    "click", lambda: todo_app.filter_type.set_value("all")
-                ).tooltip(Translates.statistics_card_text_tooltip)
+                PriorityStatisticsChart()
 
-            TodosStatisticsChart()
+                TodosStatisticsChart()
 
 
 class StatisitcsOpenButton:
@@ -178,10 +190,10 @@ class NewTaskInput:
             rxui.input(
                 value=todo_app.title_input,
                 placeholder=Translates.add_task_input_placeholder,
-            ).classes("grow").on("keyup.enter", todo_app.add_task)
+            ).classes("grow").props("clearable").on("keyup.enter", todo_app.add_task)
 
             rxui.button(icon="add", on_click=todo_app.add_task).bind_enabled(
-                lambda: bool(todo_app.title_input.value.strip())
+                todo_app.is_title_input_valid
             )
 
 
@@ -189,16 +201,30 @@ class TaskFilterChoice:
     def __init__(self):
         todo_app = provider.app.get()
 
-        with ui.row(align_items="center").classes("justify-center"):
-            rxui.radio(self.options(), value=todo_app.filter_type).props("inline")
+        def show_arrow_forward_icon():
+            not_all_selected = todo_app.filter_type.value != "all"
+            no_records = len(todo_app.records.value) == 0
+            has_all_records = len(todo_app.todos.value) > 0
+            return not_all_selected and no_records and has_all_records
+
+        with ui.row(align_items="center").classes("justify-center select-none"):
+            with ui.element("div").classes("relative"):
+                rxui.radio(self.options(), value=todo_app.filter_type).props("inline")
+                rxui.icon("arrow_forward", size="1.5rem", color="red-500").classes(
+                    "absolute left-[-20px] top-[50%]  animate-bounce-x"
+                ).bind_visible(show_arrow_forward_icon)
 
     def options(self):
+        todo_app = provider.app.get()
+
         @computed
         def options():
             return {
-                "all": Translates.filter_type_all(),
-                "active": Translates.filter_type_active(),
-                "completed": Translates.filter_type_completed(),
+                "all": Translates.filter_type_all() + f" ({len(todo_app.todos.value)})",
+                "active": Translates.filter_type_active()
+                + f" ({todo_app.active_count.value})",
+                "completed": Translates.filter_type_completed()
+                + f" ({todo_app.completed_count.value})",
             }
 
         return options
@@ -266,12 +292,12 @@ class PriorityStatisticsChart:
         todo_app = provider.app.get()
 
         with ui.card().classes("w-full bg-transparent"):
-            rxui.echarts(todo_app.priority_echarts_data)
+            rxui.echarts(todo_app.priority_echarts_data).style("height: 100%;")
 
 
 class TodosStatisticsChart:
     def __init__(self):
         todo_app = provider.app.get()
 
-        with ui.card().classes("w-full bg-transparent h-[150px]"):
-            rxui.echarts(todo_app.todos_echarts_data)
+        with ui.card().classes("w-full bg-transparent"):
+            rxui.echarts(todo_app.todos_echarts_data).style("height: 100%;")
