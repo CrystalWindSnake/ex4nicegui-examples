@@ -8,3 +8,8 @@ This repository contains examples of using the [ex4nicegui](https://github.com/C
 ![](asset/todo-app.01.gif)
 
 ![alt text](asset/todo-app.02.gif)
+
+
+## colors
+
+![](asset/colors.01.gif)

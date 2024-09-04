@@ -8,9 +8,13 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.8"
-ex4nicegui = "^0.7.0"
+ex4nicegui = {git = "git@github.com:CrystalWindSnake/ex4nicegui.git"}
 
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[[tool.poetry.source]]
+name = "pypi-public"
+url = "https://pypi.org/simple/"

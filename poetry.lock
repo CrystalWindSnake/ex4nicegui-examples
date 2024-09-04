@@ -11,6 +11,11 @@ files = [
     {file = "aiofiles-24.1.0.tar.gz", hash = "sha256:22a075c9e5a3810f0c2e48f3008c94d68c65d763b9b03857924c99e57355166c"},
 ]
 
+[package.source]
+type = "legacy"
+url = "https://pypi.org/simple"
+reference = "pypi-public"
+
 [[package]]
 name = "aiohappyeyeballs"
 version = "2.4.0"
@@ -21,6 +26,11 @@ files = [
     {file = "aiohappyeyeballs-2.4.0-py3-none-any.whl", hash = "sha256:7ce92076e249169a13c2f49320d1967425eaf1f407522d707d59cac7628d62bd"},
     {file = "aiohappyeyeballs-2.4.0.tar.gz", hash = "sha256:55a1714f084e63d49639800f95716da97a1f173d46a16dfcfda0016abb93b6b2"},
 ]
+
+[package.source]
+type = "legacy"
+url = "https://pypi.org/simple"
+reference = "pypi-public"
 
 [[package]]
 name = "aiohttp"
@@ -134,6 +144,11 @@ yarl = ">=1.0,<2.0"
 [package.extras]
 speedups = ["Brotli", "aiodns (>=3.2.0)", "brotlicffi"]
 
+[package.source]
+type = "legacy"
+url = "https://pypi.org/simple"
+reference = "pypi-public"
+
 [[package]]
 name = "aiosignal"
 version = "1.3.1"
@@ -148,6 +163,11 @@ files = [
 [package.dependencies]
 frozenlist = ">=1.1.0"
 
+[package.source]
+type = "legacy"
+url = "https://pypi.org/simple"
+reference = "pypi-public"
+
 [[package]]
 name = "annotated-types"
 version = "0.7.0"
@@ -161,6 +181,11 @@ files = [
 
 [package.dependencies]
 typing-extensions = {version = ">=4.0.0", markers = "python_version < \"3.9\""}
+
+[package.source]
+type = "legacy"
+url = "https://pypi.org/simple"
+reference = "pypi-public"
 
 [[package]]
 name = "anyio"
@@ -184,6 +209,11 @@ doc = ["Sphinx (>=7)", "packaging", "sphinx-autodoc-typehints (>=1.2.0)", "sphin
 test = ["anyio[trio]", "coverage[toml] (>=7)", "exceptiongroup (>=1.2.0)", "hypothesis (>=4.0)", "psutil (>=5.9)", "pytest (>=7.0)", "pytest-mock (>=3.6.1)", "trustme", "uvloop (>=0.17)"]
 trio = ["trio (>=0.23)"]
 
+[package.source]
+type = "legacy"
+url = "https://pypi.org/simple"
+reference = "pypi-public"
+
 [[package]]
 name = "async-timeout"
 version = "4.0.3"
@@ -194,6 +224,11 @@ files = [
     {file = "async-timeout-4.0.3.tar.gz", hash = "sha256:4640d96be84d82d02ed59ea2b7105a0f7b33abe8703703cd0ab0bf87c427522f"},
     {file = "async_timeout-4.0.3-py3-none-any.whl", hash = "sha256:7405140ff1230c310e51dc27b3145b9092d659ce68ff733fb0cefe3ee42be028"},
 ]
+
+[package.source]
+type = "legacy"
+url = "https://pypi.org/simple"
+reference = "pypi-public"
 
 [[package]]
 name = "attrs"
@@ -214,6 +249,11 @@ docs = ["cogapp", "furo", "myst-parser", "sphinx", "sphinx-notfound-page", "sphi
 tests = ["cloudpickle", "hypothesis", "mypy (>=1.11.1)", "pympler", "pytest (>=4.3.0)", "pytest-mypy-plugins", "pytest-xdist[psutil]"]
 tests-mypy = ["mypy (>=1.11.1)", "pytest-mypy-plugins"]
 
+[package.source]
+type = "legacy"
+url = "https://pypi.org/simple"
+reference = "pypi-public"
+
 [[package]]
 name = "bidict"
 version = "0.23.1"
@@ -225,6 +265,11 @@ files = [
     {file = "bidict-0.23.1.tar.gz", hash = "sha256:03069d763bc387bbd20e7d49914e75fc4132a41937fa3405417e1a5a2d006d71"},
 ]
 
+[package.source]
+type = "legacy"
+url = "https://pypi.org/simple"
+reference = "pypi-public"
+
 [[package]]
 name = "certifi"
 version = "2024.7.4"
@@ -235,6 +280,11 @@ files = [
     {file = "certifi-2024.7.4-py3-none-any.whl", hash = "sha256:c198e21b1289c2ab85ee4e67bb4b4ef3ead0892059901a8d5b622f24a1101e90"},
     {file = "certifi-2024.7.4.tar.gz", hash = "sha256:5a1e7645bc0ec61a09e26c36f6106dd4cf40c6db3a1fb6352b0244e7fb057c7b"},
 ]
+
+[package.source]
+type = "legacy"
+url = "https://pypi.org/simple"
+reference = "pypi-public"
 
 [[package]]
 name = "charset-normalizer"
@@ -335,6 +385,11 @@ files = [
     {file = "charset_normalizer-3.3.2-py3-none-any.whl", hash = "sha256:3e4d1f6587322d2788836a99c69062fbb091331ec940e02d12d179c1d53e25fc"},
 ]
 
+[package.source]
+type = "legacy"
+url = "https://pypi.org/simple"
+reference = "pypi-public"
+
 [[package]]
 name = "click"
 version = "8.1.7"
@@ -349,6 +404,11 @@ files = [
 [package.dependencies]
 colorama = {version = "*", markers = "platform_system == \"Windows\""}
 
+[package.source]
+type = "legacy"
+url = "https://pypi.org/simple"
+reference = "pypi-public"
+
 [[package]]
 name = "colorama"
 version = "0.4.6"
@@ -360,29 +420,46 @@ files = [
     {file = "colorama-0.4.6.tar.gz", hash = "sha256:08695f5cb7ed6e0531a20572697297273c47b8cae5a63ffc6d6ed5c201be6e44"},
 ]
 
+[package.source]
+type = "legacy"
+url = "https://pypi.org/simple"
+reference = "pypi-public"
+
 [[package]]
 name = "docutils"
-version = "0.19"
+version = "0.20.1"
 description = "Docutils -- Python Documentation Utilities"
 optional = false
-python-versions = "*"
-files = []
+python-versions = ">=3.7"
+files = [
+    {file = "docutils-0.20.1-py3-none-any.whl", hash = "sha256:96f387a2c5562db4476f09f13bbab2192e764cac08ebbf3a34a95d9b1e4a59d6"},
+    {file = "docutils-0.20.1.tar.gz", hash = "sha256:f08a4e276c3a1583a86dce3e34aba3fe04d02bba2dd51ed16106244e8a923e3b"},
+]
+
+[package.source]
+type = "legacy"
+url = "https://pypi.org/simple"
+reference = "pypi-public"
 
 [[package]]
 name = "ex4nicegui"
 version = "0.7.0"
 description = "Extension library based on nicegui, providing data responsive,BI functionality modules"
 optional = false
-python-versions = "<4.0,>=3.8"
-files = [
-    {file = "ex4nicegui-0.7.0-py3-none-any.whl", hash = "sha256:ebfd9c4035fac023ce413190179692bf27d83e89be72dcbc8f3d0b6953f4e0c4"},
-    {file = "ex4nicegui-0.7.0.tar.gz", hash = "sha256:42c63f2df595545d79766a3d09389d134e7afb136d6b3d804ad0be51437f709c"},
-]
+python-versions = "^3.8"
+files = []
+develop = false
 
 [package.dependencies]
-executing = ">=2.0.1,<3.0.0"
-nicegui = ">=1.4.25,<2.0.0"
-signe = ">=0.4.20,<0.5.0"
+executing = "^2.0.1"
+nicegui = "^1.4.25"
+signe = "^0.4.20"
+
+[package.source]
+type = "git"
+url = "git@github.com:CrystalWindSnake/ex4nicegui.git"
+reference = "HEAD"
+resolved_reference = "276a281b8a255e14c2750326d9927a42903c2948"
 
 [[package]]
 name = "exceptiongroup"
@@ -398,6 +475,11 @@ files = [
 [package.extras]
 test = ["pytest (>=6)"]
 
+[package.source]
+type = "legacy"
+url = "https://pypi.org/simple"
+reference = "pypi-public"
+
 [[package]]
 name = "executing"
 version = "2.0.1"
@@ -411,6 +493,11 @@ files = [
 
 [package.extras]
 tests = ["asttokens (>=2.1.0)", "coverage", "coverage-enable-subprocess", "ipython", "littleutils", "pytest", "rich"]
+
+[package.source]
+type = "legacy"
+url = "https://pypi.org/simple"
+reference = "pypi-public"
 
 [[package]]
 name = "fastapi"
@@ -430,6 +517,11 @@ typing-extensions = ">=4.8.0"
 
 [package.extras]
 all = ["email-validator (>=2.0.0)", "httpx (>=0.23.0)", "itsdangerous (>=1.1.0)", "jinja2 (>=2.11.2)", "orjson (>=3.2.1)", "pydantic-extra-types (>=2.0.0)", "pydantic-settings (>=2.0.0)", "python-multipart (>=0.0.7)", "pyyaml (>=5.3.1)", "ujson (>=4.0.1,!=4.0.2,!=4.1.0,!=4.2.0,!=4.3.0,!=5.0.0,!=5.1.0)", "uvicorn[standard] (>=0.12.0)"]
+
+[package.source]
+type = "legacy"
+url = "https://pypi.org/simple"
+reference = "pypi-public"
 
 [[package]]
 name = "frozenlist"
@@ -517,6 +609,11 @@ files = [
     {file = "frozenlist-1.4.1.tar.gz", hash = "sha256:c037a86e8513059a2613aaba4d817bb90b9d9b6b69aace3ce9c877e8c8ed402b"},
 ]
 
+[package.source]
+type = "legacy"
+url = "https://pypi.org/simple"
+reference = "pypi-public"
+
 [[package]]
 name = "h11"
 version = "0.14.0"
@@ -527,6 +624,11 @@ files = [
     {file = "h11-0.14.0-py3-none-any.whl", hash = "sha256:e3fe4ac4b851c468cc8363d500db52c2ead036020723024a109d37346efaa761"},
     {file = "h11-0.14.0.tar.gz", hash = "sha256:8f19fbbe99e72420ff35c00b27a34cb9937e902a8b810e2c88300c6f0a3b699d"},
 ]
+
+[package.source]
+type = "legacy"
+url = "https://pypi.org/simple"
+reference = "pypi-public"
 
 [[package]]
 name = "httpcore"
@@ -548,6 +650,11 @@ asyncio = ["anyio (>=4.0,<5.0)"]
 http2 = ["h2 (>=3,<5)"]
 socks = ["socksio (==1.*)"]
 trio = ["trio (>=0.22.0,<0.26.0)"]
+
+[package.source]
+type = "legacy"
+url = "https://pypi.org/simple"
+reference = "pypi-public"
 
 [[package]]
 name = "httptools"
@@ -597,15 +704,20 @@ files = [
 [package.extras]
 test = ["Cython (>=0.29.24,<0.30.0)"]
 
+[package.source]
+type = "legacy"
+url = "https://pypi.org/simple"
+reference = "pypi-public"
+
 [[package]]
 name = "httpx"
-version = "0.27.0"
+version = "0.27.2"
 description = "The next generation HTTP client."
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "httpx-0.27.0-py3-none-any.whl", hash = "sha256:71d5465162c13681bff01ad59b2cc68dd838ea1f10e51574bac27103f00c91a5"},
-    {file = "httpx-0.27.0.tar.gz", hash = "sha256:a0cb88a46f32dc874e04ee956e4c2764aba2aa228f650b06788ba6bda2962ab5"},
+    {file = "httpx-0.27.2-py3-none-any.whl", hash = "sha256:7bb2708e112d8fdd7829cd4243970f0c223274051cb35ee80c03301ee29a3df0"},
+    {file = "httpx-0.27.2.tar.gz", hash = "sha256:f7c2be1d2f3c3c3160d441802406b206c2b76f5947b11115e6df10c6c65e66c2"},
 ]
 
 [package.dependencies]
@@ -620,6 +732,12 @@ brotli = ["brotli", "brotlicffi"]
 cli = ["click (==8.*)", "pygments (==2.*)", "rich (>=10,<14)"]
 http2 = ["h2 (>=3,<5)"]
 socks = ["socksio (==1.*)"]
+zstd = ["zstandard (>=0.18.0)"]
+
+[package.source]
+type = "legacy"
+url = "https://pypi.org/simple"
+reference = "pypi-public"
 
 [[package]]
 name = "idna"
@@ -632,6 +750,11 @@ files = [
     {file = "idna-3.8.tar.gz", hash = "sha256:d838c2c0ed6fced7693d5e8ab8e734d5f8fda53a039c0164afb0b82e771e3603"},
 ]
 
+[package.source]
+type = "legacy"
+url = "https://pypi.org/simple"
+reference = "pypi-public"
+
 [[package]]
 name = "ifaddr"
 version = "0.2.0"
@@ -643,6 +766,11 @@ files = [
     {file = "ifaddr-0.2.0.tar.gz", hash = "sha256:cc0cbfcaabf765d44595825fb96a99bb12c79716b73b44330ea38ee2b0c4aed4"},
 ]
 
+[package.source]
+type = "legacy"
+url = "https://pypi.org/simple"
+reference = "pypi-public"
+
 [[package]]
 name = "itsdangerous"
 version = "2.2.0"
@@ -653,6 +781,11 @@ files = [
     {file = "itsdangerous-2.2.0-py3-none-any.whl", hash = "sha256:c6242fc49e35958c8b15141343aa660db5fc54d4f13a1db01a3f5891b98700ef"},
     {file = "itsdangerous-2.2.0.tar.gz", hash = "sha256:e0050c0b7da1eea53ffaf149c0cfbb5c6e2e2b69c4bef22c81fa6eb73e5f6173"},
 ]
+
+[package.source]
+type = "legacy"
+url = "https://pypi.org/simple"
+reference = "pypi-public"
 
 [[package]]
 name = "jinja2"
@@ -671,12 +804,17 @@ MarkupSafe = ">=2.0"
 [package.extras]
 i18n = ["Babel (>=2.7)"]
 
+[package.source]
+type = "legacy"
+url = "https://pypi.org/simple"
+reference = "pypi-public"
+
 [[package]]
 name = "markdown2"
 version = "2.5.0"
 description = "A fast and complete Python implementation of Markdown"
 optional = false
-python-versions = "<4,>=3.8"
+python-versions = ">=3.8, <4"
 files = [
     {file = "markdown2-2.5.0-py2.py3-none-any.whl", hash = "sha256:300d4429b620ebc974ef512339a9e08bc080473f95135a91f33906e24e8280c1"},
     {file = "markdown2-2.5.0.tar.gz", hash = "sha256:9bff02911f8b617b61eb269c4c1a5f9b2087d7ff051604f66a61b63cab30adc2"},
@@ -687,6 +825,11 @@ all = ["latex2mathml", "pygments (>=2.7.3)", "wavedrom"]
 code-syntax-highlighting = ["pygments (>=2.7.3)"]
 latex = ["latex2mathml"]
 wavedrom = ["wavedrom"]
+
+[package.source]
+type = "legacy"
+url = "https://pypi.org/simple"
+reference = "pypi-public"
 
 [[package]]
 name = "markupsafe"
@@ -756,6 +899,11 @@ files = [
     {file = "MarkupSafe-2.1.5-cp39-cp39-win_amd64.whl", hash = "sha256:fa173ec60341d6bb97a89f5ea19c85c5643c1e7dedebc22f5181eb73573142c5"},
     {file = "MarkupSafe-2.1.5.tar.gz", hash = "sha256:d283d37a890ba4c1ae73ffadf8046435c76e7bc2247bbb63c00bd1a709c6544b"},
 ]
+
+[package.source]
+type = "legacy"
+url = "https://pypi.org/simple"
+reference = "pypi-public"
 
 [[package]]
 name = "multidict"
@@ -856,12 +1004,17 @@ files = [
     {file = "multidict-6.0.5.tar.gz", hash = "sha256:f7e301075edaf50500f0b341543c41194d8df3ae5caf4702f2095f3ca73dd8da"},
 ]
 
+[package.source]
+type = "legacy"
+url = "https://pypi.org/simple"
+reference = "pypi-public"
+
 [[package]]
 name = "nicegui"
 version = "1.4.36"
 description = "Create web-based user interfaces with Python. The nice way."
 optional = false
-python-versions = "<4.0,>=3.8"
+python-versions = ">=3.8,<4.0"
 files = [
     {file = "nicegui-1.4.36-py3-none-any.whl", hash = "sha256:c25d29994cdec51ec83b705475c89ab49de70a40b55d329d3d6a14e61927efeb"},
     {file = "nicegui-1.4.36.tar.gz", hash = "sha256:190014d896740365bca72b08b318e9340224634fc08fe1c29b4dea24ff8d5982"},
@@ -895,6 +1048,11 @@ matplotlib = ["matplotlib (>=3.5.0,<4.0.0)"]
 native = ["pywebview (>=5.0.1,<6.0.0)"]
 plotly = ["plotly (>=5.13.0,<6.0.0)"]
 sass = ["libsass (>=0.23.0,<0.24.0)"]
+
+[package.source]
+type = "legacy"
+url = "https://pypi.org/simple"
+reference = "pypi-public"
 
 [[package]]
 name = "orjson"
@@ -962,6 +1120,11 @@ files = [
     {file = "orjson-3.10.7.tar.gz", hash = "sha256:75ef0640403f945f3a1f9f6400686560dbfb0fb5b16589ad62cd477043c4eee3"},
 ]
 
+[package.source]
+type = "legacy"
+url = "https://pypi.org/simple"
+reference = "pypi-public"
+
 [[package]]
 name = "pscript"
 version = "0.7.7"
@@ -972,6 +1135,11 @@ files = [
     {file = "pscript-0.7.7-py3-none-any.whl", hash = "sha256:b0fdac0df0393a4d7497153fea6a82e6429f32327c4c0a4817f1cd68adc08083"},
     {file = "pscript-0.7.7.tar.gz", hash = "sha256:8632f7a4483f235514aadee110edee82eb6d67336bf68744a7b18d76e50442f8"},
 ]
+
+[package.source]
+type = "legacy"
+url = "https://pypi.org/simple"
+reference = "pypi-public"
 
 [[package]]
 name = "pydantic"
@@ -994,6 +1162,11 @@ typing-extensions = [
 
 [package.extras]
 email = ["email-validator (>=2.0.0)"]
+
+[package.source]
+type = "legacy"
+url = "https://pypi.org/simple"
+reference = "pypi-public"
 
 [[package]]
 name = "pydantic-core"
@@ -1096,6 +1269,11 @@ files = [
 [package.dependencies]
 typing-extensions = ">=4.6.0,<4.7.0 || >4.7.0"
 
+[package.source]
+type = "legacy"
+url = "https://pypi.org/simple"
+reference = "pypi-public"
+
 [[package]]
 name = "pygments"
 version = "2.18.0"
@@ -1110,6 +1288,11 @@ files = [
 [package.extras]
 windows-terminal = ["colorama (>=0.4.6)"]
 
+[package.source]
+type = "legacy"
+url = "https://pypi.org/simple"
+reference = "pypi-public"
+
 [[package]]
 name = "python-dotenv"
 version = "1.0.1"
@@ -1123,6 +1306,11 @@ files = [
 
 [package.extras]
 cli = ["click (>=5.0)"]
+
+[package.source]
+type = "legacy"
+url = "https://pypi.org/simple"
+reference = "pypi-public"
 
 [[package]]
 name = "python-engineio"
@@ -1143,6 +1331,11 @@ asyncio-client = ["aiohttp (>=3.4)"]
 client = ["requests (>=2.21.0)", "websocket-client (>=0.54.0)"]
 docs = ["sphinx"]
 
+[package.source]
+type = "legacy"
+url = "https://pypi.org/simple"
+reference = "pypi-public"
+
 [[package]]
 name = "python-multipart"
 version = "0.0.9"
@@ -1157,6 +1350,11 @@ files = [
 [package.extras]
 dev = ["atomicwrites (==1.4.1)", "attrs (==23.2.0)", "coverage (==7.4.1)", "hatch", "invoke (==2.2.0)", "more-itertools (==10.2.0)", "pbr (==6.0.0)", "pluggy (==1.4.0)", "py (==1.11.0)", "pytest (==8.0.0)", "pytest-cov (==4.1.0)", "pytest-timeout (==2.2.0)", "pyyaml (==6.0.1)", "ruff (==0.2.1)"]
 
+[package.source]
+type = "legacy"
+url = "https://pypi.org/simple"
+reference = "pypi-public"
+
 [[package]]
 name = "python-socketio"
 version = "5.11.3"
@@ -1169,7 +1367,7 @@ files = [
 ]
 
 [package.dependencies]
-aiohttp = {version = ">=3.4", optional = true, markers = "extra == \"asyncio-client\""}
+aiohttp = {version = ">=3.4", optional = true, markers = "extra == \"asyncio_client\""}
 bidict = ">=0.21.0"
 python-engineio = ">=4.8.0"
 
@@ -1177,6 +1375,11 @@ python-engineio = ">=4.8.0"
 asyncio-client = ["aiohttp (>=3.4)"]
 client = ["requests (>=2.21.0)", "websocket-client (>=0.54.0)"]
 docs = ["sphinx"]
+
+[package.source]
+type = "legacy"
+url = "https://pypi.org/simple"
+reference = "pypi-public"
 
 [[package]]
 name = "pyyaml"
@@ -1240,6 +1443,11 @@ files = [
     {file = "pyyaml-6.0.2.tar.gz", hash = "sha256:d584d9ec91ad65861cc08d42e834324ef890a082e591037abe114850ff7bbc3e"},
 ]
 
+[package.source]
+type = "legacy"
+url = "https://pypi.org/simple"
+reference = "pypi-public"
+
 [[package]]
 name = "requests"
 version = "2.32.3"
@@ -1261,6 +1469,11 @@ urllib3 = ">=1.21.1,<3"
 socks = ["PySocks (>=1.5.6,!=1.5.7)"]
 use-chardet-on-py3 = ["chardet (>=3.0.2,<6)"]
 
+[package.source]
+type = "legacy"
+url = "https://pypi.org/simple"
+reference = "pypi-public"
+
 [[package]]
 name = "signe"
 version = "0.4.20"
@@ -1274,6 +1487,11 @@ files = [
 
 [package.dependencies]
 typing-extensions = "*"
+
+[package.source]
+type = "legacy"
+url = "https://pypi.org/simple"
+reference = "pypi-public"
 
 [[package]]
 name = "simple-websocket"
@@ -1292,6 +1510,11 @@ wsproto = "*"
 [package.extras]
 docs = ["sphinx"]
 
+[package.source]
+type = "legacy"
+url = "https://pypi.org/simple"
+reference = "pypi-public"
+
 [[package]]
 name = "sniffio"
 version = "1.3.1"
@@ -1302,6 +1525,11 @@ files = [
     {file = "sniffio-1.3.1-py3-none-any.whl", hash = "sha256:2f6da418d1f1e0fddd844478f41680e794e6051915791a034ff65e5f100525a2"},
     {file = "sniffio-1.3.1.tar.gz", hash = "sha256:f4324edc670a0f49750a81b895f35c3adb843cca46f0530f79fc1babb23789dc"},
 ]
+
+[package.source]
+type = "legacy"
+url = "https://pypi.org/simple"
+reference = "pypi-public"
 
 [[package]]
 name = "starlette"
@@ -1321,6 +1549,11 @@ typing-extensions = {version = ">=3.10.0", markers = "python_version < \"3.10\""
 [package.extras]
 full = ["httpx (>=0.22.0)", "itsdangerous", "jinja2", "python-multipart (>=0.0.7)", "pyyaml"]
 
+[package.source]
+type = "legacy"
+url = "https://pypi.org/simple"
+reference = "pypi-public"
+
 [[package]]
 name = "typing-extensions"
 version = "4.12.2"
@@ -1331,6 +1564,11 @@ files = [
     {file = "typing_extensions-4.12.2-py3-none-any.whl", hash = "sha256:04e5ca0351e0f3f85c6853954072df659d0d13fac324d0072316b67d7794700d"},
     {file = "typing_extensions-4.12.2.tar.gz", hash = "sha256:1a7ead55c7e559dd4dee8856e3a88b41225abfe1ce8df57b7c13915fe121ffb8"},
 ]
+
+[package.source]
+type = "legacy"
+url = "https://pypi.org/simple"
+reference = "pypi-public"
 
 [[package]]
 name = "urllib3"
@@ -1348,6 +1586,11 @@ brotli = ["brotli (>=1.0.9)", "brotlicffi (>=0.8.0)"]
 h2 = ["h2 (>=4,<5)"]
 socks = ["pysocks (>=1.5.6,!=1.5.7,<2.0)"]
 zstd = ["zstandard (>=0.18.0)"]
+
+[package.source]
+type = "legacy"
+url = "https://pypi.org/simple"
+reference = "pypi-public"
 
 [[package]]
 name = "uvicorn"
@@ -1374,6 +1617,11 @@ websockets = {version = ">=10.4", optional = true, markers = "extra == \"standar
 
 [package.extras]
 standard = ["colorama (>=0.4)", "httptools (>=0.5.0)", "python-dotenv (>=0.13)", "pyyaml (>=5.1)", "uvloop (>=0.14.0,!=0.15.0,!=0.15.1)", "watchfiles (>=0.13)", "websockets (>=10.4)"]
+
+[package.source]
+type = "legacy"
+url = "https://pypi.org/simple"
+reference = "pypi-public"
 
 [[package]]
 name = "uvloop"
@@ -1419,6 +1667,11 @@ files = [
 docs = ["Sphinx (>=4.1.2,<4.2.0)", "sphinx-rtd-theme (>=0.5.2,<0.6.0)", "sphinxcontrib-asyncio (>=0.3.0,<0.4.0)"]
 test = ["Cython (>=0.29.36,<0.30.0)", "aiohttp (==3.9.0b0)", "aiohttp (>=3.8.1)", "flake8 (>=5.0,<6.0)", "mypy (>=0.800)", "psutil", "pyOpenSSL (>=23.0.0,<23.1.0)", "pycodestyle (>=2.9.0,<2.10.0)"]
 
+[package.source]
+type = "legacy"
+url = "https://pypi.org/simple"
+reference = "pypi-public"
+
 [[package]]
 name = "vbuild"
 version = "0.8.2"
@@ -1432,6 +1685,11 @@ files = [
 
 [package.dependencies]
 pscript = ">=0.7.0,<0.8.0"
+
+[package.source]
+type = "legacy"
+url = "https://pypi.org/simple"
+reference = "pypi-public"
 
 [[package]]
 name = "watchfiles"
@@ -1532,6 +1790,11 @@ files = [
 [package.dependencies]
 anyio = ">=3.0.0"
 
+[package.source]
+type = "legacy"
+url = "https://pypi.org/simple"
+reference = "pypi-public"
+
 [[package]]
 name = "websockets"
 version = "13.0"
@@ -1627,6 +1890,11 @@ files = [
     {file = "websockets-13.0.tar.gz", hash = "sha256:b7bf950234a482b7461afdb2ec99eee3548ec4d53f418c7990bb79c620476602"},
 ]
 
+[package.source]
+type = "legacy"
+url = "https://pypi.org/simple"
+reference = "pypi-public"
+
 [[package]]
 name = "wsproto"
 version = "1.2.0"
@@ -1640,6 +1908,11 @@ files = [
 
 [package.dependencies]
 h11 = ">=0.9.0,<1"
+
+[package.source]
+type = "legacy"
+url = "https://pypi.org/simple"
+reference = "pypi-public"
 
 [[package]]
 name = "yarl"
@@ -1744,7 +2017,12 @@ files = [
 idna = ">=2.0"
 multidict = ">=4.0"
 
+[package.source]
+type = "legacy"
+url = "https://pypi.org/simple"
+reference = "pypi-public"
+
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.8"
-content-hash = "996540b619f31f6ab637d237dde6125290b3e29d619cb0aa8f7a15ba61f28b5e"
+content-hash = "88c4d84ef31ad92d8e08558d4e785c0fa2f77bd602a3902701a73862e2db7647"
