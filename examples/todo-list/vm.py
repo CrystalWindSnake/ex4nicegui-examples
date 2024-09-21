@@ -8,47 +8,54 @@ import itertools
 
 class TodoItem(rxui.ViewModel):
     _ids = 0
+    title = ""
+    priority = ""
+    completed = False
+    title_editing = False
 
     def __init__(self, title: str, priority: str = consts.PRIORITYS[1]):
         super().__init__()
 
-        self.title = ref(title)
-        self.priority = ref(priority)
-        self.completed = ref(False)
-        self.title_editing = ref(False)
+        self.title = title
+        self.priority = priority
 
         self.id = self._ids
         TodoItem._ids += 1
 
     def show_title_edit(self):
-        self.title_editing.value = True
+        self.title_editing = True
 
     def hide_title_edit(self):
-        self.title_editing.value = False
+        self.title_editing = False
 
     def toggle_completed(self):
-        self.completed.value = not self.completed.value
+        self.completed = not self.completed
 
     def priority_color(self):
-        return styles.get_priority_color(self.priority.value)
+        return styles.get_priority_color(self.priority)
 
 
 class TodoApp(rxui.ViewModel):
+    todos: List[TodoItem] = []
+    filter_type: Literal["all", "active", "completed"] = "all"
+    title_input = ""
+    statistics_card_opened = True
+
+    _item_grid_col = "6ch auto 15ch 5ch"
+
     def __init__(self, todos: Optional[List[TodoItem]] = None):
         super().__init__()
-        self.todos = ref(todos or [])
-        self.filter_type: Ref[Literal["all", "active", "completed"]] = ref("all")
+        self.todos = todos or []
 
-        self.title_input = ref("")
         self.is_title_input_valid = (
-            lambda: self.title_input.value is not None
-            and len(self.title_input.value.strip()) > 0
+            lambda: self.title_input and len(self.title_input.strip()) > 0
         )
-        self.statistics_card_opened = ref(True)
-        self.item_grid_col = "6ch auto 15ch 5ch"
 
         self._pagination = rxui.use_pagination(self.filtered_todos, 7)
         self.records: ReadonlyRef[List[TodoItem]] = self._pagination.current_source
+
+    def set_filter(self, filter_type: Literal["all", "active", "completed"]):
+        self.filter_type = filter_type
 
     @staticmethod
     def create_random_todos():
@@ -60,16 +67,16 @@ class TodoApp(rxui.ViewModel):
 
     @rxui.cached_var
     def filtered_todos(self):
-        sorted_todos = sorted(self.todos.value, key=lambda x: x.completed.value)
-        return getattr(filters_service, self.filter_type.value)(sorted_todos)
+        sorted_todos = sorted(self.todos, key=lambda x: x.completed)
+        return getattr(filters_service, self.filter_type)(sorted_todos)
 
     @rxui.cached_var
     def active_count(self):
-        return len(filters_service.active(self.todos.value))
+        return len(filters_service.active(self.todos))
 
     @rxui.cached_var
     def completed_count(self):
-        return len(filters_service.completed(self.todos.value))
+        return len(filters_service.completed(self.todos))
 
     @rxui.cached_var
     def completion_ratio(self):
@@ -79,18 +86,18 @@ class TodoApp(rxui.ViewModel):
 
     @rxui.cached_var
     def total_count(self):
-        return len(filters_service.all(self.todos.value))
+        return len(filters_service.all(self.todos))
 
     @rxui.cached_var
     def is_all_checked(self):
-        return all(item.completed for item in self.todos.value)
+        return all(item.completed for item in self.todos)
 
     def toggle_statistics_card(self):
-        self.statistics_card_opened.value = not self.statistics_card_opened.value
+        self.statistics_card_opened = not self.statistics_card_opened
 
     def priority_echarts_data(self):
-        key_fn = lambda x: x.priority.value  # noqa: E731
-        grouped = itertools.groupby(sorted(self.todos.value, key=key_fn), key_fn)
+        key_fn = lambda x: x.priority  # noqa: E731
+        grouped = itertools.groupby(sorted(self.todos, key=key_fn), key_fn)
 
         data = [
             {
@@ -151,42 +158,40 @@ class TodoApp(rxui.ViewModel):
         }
 
     def add_item(self, title: str):
-        self.todos.value.insert(0, TodoItem(title))
+        self.todos.insert(0, TodoItem(title))
 
     def remove_item(self, item: TodoItem):
-        self.todos.value.remove(item)
+        self.todos.remove(item)
 
     def all_checks(self):
-        for item in self.todos.value:
-            item.completed.value = True
+        for item in self.todos:
+            item.completed = True
 
     def all_unchecks(self):
-        for item in self.todos.value:
+        for item in self.todos:
             item.toggle_completed()
 
     def add_task(self):
-        title = self.title_input.value.strip()
+        title = self.title_input.strip()
         if title:
             self.add_item(title)
-            self.title_input.value = ""
+            self.title_input = ""
 
     def clear_completed(self):
-        self.todos.value = [
-            todo for todo in self.todos.value if not todo.completed.value
-        ]
+        self.todos = [todo for todo in self.todos if not todo.completed]
 
     def delete_todo(self, item: TodoItem):
-        self.todos.value.remove(item)
+        self.todos.remove(item)
 
 
 class filters_service:
     @staticmethod
     def active(todos: List[TodoItem]):
-        return [todo for todo in todos if not todo.completed.value]
+        return [todo for todo in todos if not todo.completed]
 
     @staticmethod
     def completed(todos: List[TodoItem]):
-        return [todo for todo in todos if todo.completed.value]
+        return [todo for todo in todos if todo.completed]
 
     @staticmethod
     def all(todos: List[TodoItem]):

@@ -40,59 +40,26 @@ def base():
     ).bind_visible(has_error)
 
 
-def use_view_model_class():
-    class Vm(rxui.ViewModel):
-        num1 = rxui.var(0)
-        num2 = rxui.var(0)
-        sign = rxui.var("+")
-        error = rxui.var("")
-
-        @classmethod
-        def result(cls):
-            cls.error.value = ""
-            try:
-                return calculate(cls.num1.value, cls.num2.value, cls.sign.value)
-            except Exception as e:
-                cls.error.value = f'Error by evaluating "{cls.num1.value}{cls.sign.value}{cls.num2.value}": {e}'
-                return "N/A"
-
-        @classmethod
-        def has_error(cls):
-            return bool(cls.error.value)
-
-    # ==== UI ====
-    ui.number.default_props("outline")
-
-    with ui.row(align_items="center"):
-        rxui.number(value=Vm.num1)
-        rxui.select(["+", "-", "*", "/"], value=Vm.sign)
-        rxui.number(value=Vm.num2)
-        ui.label("=")
-        rxui.label(Vm.result).bind_color(lambda: "red" if Vm.has_error() else "black")
-
-    rxui.label(Vm.error).bind_color(
-        lambda: "red" if Vm.has_error() else "black"
-    ).bind_visible(Vm.has_error)
-
-
 def use_view_model_object():
     class Vm(rxui.ViewModel):
-        num1 = rxui.var(0)
-        num2 = rxui.var(0)
-        sign = rxui.var("+")
-        error = rxui.var("")
+        num1 = 0
+        num2 = 0
+        sign = "+"
+        error = ""
 
         @rxui.cached_var
         def result(self):
-            self.error.value = ""
+            self.error = ""
             try:
-                return calculate(self.num1.value, self.num2.value, self.sign.value)
+                return calculate(self.num1, self.num2, self.sign)
             except Exception as e:
-                self.error.value = f'Error by evaluating "{self.num1.value}{self.sign.value}{self.num2.value}": {e}'
+                self.error = (
+                    f'Error by evaluating "{self.num1}{self.sign}{self.num2}": {e}'
+                )
                 return "N/A"
 
         def has_error(self):
-            return bool(self.error.value)
+            return bool(self.error)
 
     vm = Vm()
 
@@ -115,9 +82,6 @@ if __name__ in {"__main__", "__mp_main__"}:
     with ui.card().classes("w-full items-stretch"):
         with ui.expansion("base", group="calculate"):
             base()
-
-        with ui.expansion("use_view_model_class", group="calculate"):
-            use_view_model_class()
 
         with ui.expansion("use_view_model_object", group="calculate"):
             use_view_model_object()

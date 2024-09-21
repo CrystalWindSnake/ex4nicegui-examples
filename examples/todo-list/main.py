@@ -1,5 +1,5 @@
 from pathlib import Path
-from nicegui import ui, app
+from nicegui import ui,app
 import components
 import utils
 import provider

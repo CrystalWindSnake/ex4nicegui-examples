@@ -21,7 +21,7 @@ def todo_item(todo_app: vm.TodoApp, todo: vm.TodoItem):
         lambda: f"bg-gradient-to-r from-[{todo.priority_color().get_hex()}] from-10%"
     ).bind_style(
         {"background-color": lambda: todo.priority_color().get_rgba(alpha=0.5)}
-    ), ui.grid(columns=todo_app.item_grid_col).classes("w-full"):
+    ), ui.grid(columns=todo_app._item_grid_col).classes("w-full"):
         # checkbox and title
         rxui.checkbox(value=todo.completed)
         with ui.row(align_items="center").classes("gap-1 relative overflow-hidden"):
@@ -42,7 +42,7 @@ def todo_item(todo_app: vm.TodoApp, todo: vm.TodoItem):
         # delete action
         with rxui.button(
             icon="delete",
-            color=lambda: "negative" if todo.completed.value else "grey-4",
+            color=lambda: "negative" if todo.completed else "grey-4",
             on_click=lambda: todo_app.delete_todo(todo),
         ).props("flat round dense").bind_enabled(todo.completed):
             rxui.tooltip(Translates.todo_item_del_tooltip).bind_not_visible(
@@ -84,7 +84,7 @@ class MainView:
             # statistics
             with ui.row(align_items="center").classes("h-[3rem]"):
                 rxui.label(
-                    lambda: f"{len(todo_app.filtered_todos())} {todo_app.filter_type.value} {Translates.filter_label()}"
+                    lambda: f"{len(todo_app.filtered_todos())} {todo_app.filter_type} {Translates.filter_label()}"
                 )
                 ui.space()
                 rxui.button(
@@ -118,25 +118,25 @@ class StatisticsView:
                         Translates.statistics_card_completed_text,
                         "check_circle",
                         "#65a30d",
-                    ).box.on(
-                        "click", lambda: todo_app.filter_type.set_value("completed")
-                    ).tooltip(Translates.statistics_card_text_tooltip)
+                    ).box.on("click", lambda: todo_app.set_filter("completed")).tooltip(
+                        Translates.statistics_card_text_tooltip
+                    )
 
                     StatisticsText(
                         todo_app.active_count,
                         Translates.statistics_card_active_text,
                         "hourglass_empty",
-                    ).box.on(
-                        "click", lambda: todo_app.filter_type.set_value("active")
-                    ).tooltip(Translates.statistics_card_text_tooltip)
+                    ).box.on("click", lambda: todo_app.set_filter("active")).tooltip(
+                        Translates.statistics_card_text_tooltip
+                    )
 
                     StatisticsText(
                         todo_app.total_count,
                         Translates.statistics_card_total_text,
                         "view_list",
-                    ).box.on(
-                        "click", lambda: todo_app.filter_type.set_value("all")
-                    ).tooltip(Translates.statistics_card_text_tooltip)
+                    ).box.on("click", lambda: todo_app.set_filter("all")).tooltip(
+                        Translates.statistics_card_text_tooltip
+                    )
 
                 PriorityStatisticsChart()
 
@@ -153,7 +153,7 @@ class StatisitcsOpenButton:
         ).classes(
             "transition-transform duration-300 ease-in-out place-self-center"
         ).props('rounded size="lg"').bind_classes(
-            {"rotate-180": lambda: not todo_app.statistics_card_opened.value}
+            {"rotate-180": lambda: not todo_app.statistics_card_opened}
         )
 
 
@@ -165,7 +165,7 @@ class TodoEdit:
 
         @on(todo.title_editing, onchanges=True)
         def _():
-            if todo.title_editing.value:
+            if todo.title_editing:
                 self.input_title_edit.element.run_method("focus")  # type: ignore
 
         self.view()
@@ -202,9 +202,9 @@ class TaskFilterChoice:
         todo_app = provider.app.get()
 
         def show_arrow_forward_icon():
-            not_all_selected = todo_app.filter_type.value != "all"
+            not_all_selected = todo_app.filter_type != "all"
             no_records = len(todo_app.records.value) == 0
-            has_all_records = len(todo_app.todos.value) > 0
+            has_all_records = len(todo_app.todos) > 0
             return not_all_selected and no_records and has_all_records
 
         with ui.row(align_items="center").classes("justify-center select-none"):
@@ -220,7 +220,7 @@ class TaskFilterChoice:
         @computed
         def options():
             return {
-                "all": Translates.filter_type_all() + f" ({len(todo_app.todos.value)})",
+                "all": Translates.filter_type_all() + f" ({len(todo_app.todos)})",
                 "active": Translates.filter_type_active()
                 + f" ({todo_app.active_count.value})",
                 "completed": Translates.filter_type_completed()
@@ -236,7 +236,7 @@ class TodoItemsTable:
 
         # header
         with rxui.card().classes("w-full py-1 bg-gray-800"), ui.grid(
-            columns=todo_app.item_grid_col
+            columns=todo_app._item_grid_col
         ).classes("w-full"):
             self._header_title(Translates.items_table_header_check)
             self._header_title(Translates.items_table_header_title)
