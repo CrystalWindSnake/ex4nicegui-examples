@@ -1,9 +1,10 @@
 from pathlib import Path
-from nicegui import ui,app
+from nicegui import ui, app
 import components
 import utils
 import provider
 import fastapi
+from nicegui_toolkit import inject_layout_tool
 
 
 @app.on_startup
@@ -29,6 +30,9 @@ def setup_page():
         ui.label("ex4nicegui").classes("watermark-text").style(
             f"--top-offset:{i}%;--left-offset:{i}%"
         )
+
+
+inject_layout_tool()
 
 
 @ui.page("/")
