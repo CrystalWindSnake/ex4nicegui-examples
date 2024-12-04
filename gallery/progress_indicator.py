@@ -56,6 +56,7 @@ if __name__ in {"__main__", "__mp_main__"}:
     import asyncio
     from time import sleep
 
+    # data processing
     def long_running_task(text: str):
         sleep(3)
         return text + "done"
@@ -64,10 +65,11 @@ if __name__ in {"__main__", "__mp_main__"}:
         await asyncio.sleep(3)
         return text + "done async"
 
+    # ui state
     text = to_ref("hello")
-
     progress_indicator = ProgressIndicator(async_long_running_task, text)
 
+    # ui
     rxui.input(value=text)
 
     progress_indicator.loading_view()
